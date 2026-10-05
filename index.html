@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>M-Krypto · Achetez des USDT</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0b4f9c">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="M-Krypto">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6f7f4;--surface:#fff;--ink:#0d2438;--muted:#5b6b78;--line:#d9dfe3;--brand:#0b4f9c;--sun:#f7c52b;--sun-ink:#3a2c00;--ok:#16794a;--err:#b3261e;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b1721;--surface:#12212e;--ink:#eef3f6;--muted:#9bacb8;--line:#25384a;--brand:#6aa8ee;--sun:#f7c52b;--sun-ink:#2a2000;--ok:#4cc38a;--err:#ff8a80}}
+:root[data-theme="dark"]{--bg:#0b1721;--surface:#12212e;--ink:#eef3f6;--muted:#9bacb8;--line:#25384a;--brand:#6aa8ee;--sun:#f7c52b;--sun-ink:#2a2000;--ok:#4cc38a;--err:#ff8a80}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.55 Figtree,system-ui,sans-serif}
+main{max-width:560px;margin:0 auto;padding:20px 16px 48px}
+h1{font:800 clamp(30px,8vw,42px)/1.05 "Bricolage Grotesque",system-ui,sans-serif;margin:8px 0 10px;letter-spacing:-.02em}
+.brandrow{display:flex;align-items:center;gap:12px;margin-top:4px}
+.logo{width:64px;height:64px;flex:none;overflow:visible}
+.ring{transform-origin:60px 60px;animation:spin 20s linear infinite}
+.r2{animation-duration:28s;animation-direction:reverse}.r3{animation-duration:36s}.r4{animation-duration:46s;animation-direction:reverse}
+.coin{transform-origin:60px 60px;animation:beat 3.2s ease-in-out infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes beat{50%{transform:scale(1.08)}}
+@media (prefers-reduced-motion:reduce){.ring,.coin{animation:none}}
+.brand{font:800 26px "Bricolage Grotesque",sans-serif;color:var(--brand);margin:0}
+.admin{border:2px dashed var(--sun);margin-top:24px}
+h2{font:700 20px/1.2 "Bricolage Grotesque",system-ui,sans-serif;margin:0 0 12px}
+.lead{color:var(--muted);margin:0 0 20px}
+.rate{display:flex;justify-content:space-between;align-items:center;background:var(--brand);color:#fff;border-radius:14px;padding:12px 16px;margin-bottom:14px;font-weight:600}
+.rate b{font:800 20px "Bricolage Grotesque",sans-serif;color:var(--sun)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px}
+label{display:block;font-weight:600;font-size:14px;margin:16px 0 6px}
+label:first-child{margin-top:0}
+input,select{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:12px;padding:13px 14px}
+input:focus,select:focus,button:focus-visible,a:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.amount{font:800 28px "Bricolage Grotesque",sans-serif}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chips button{flex:1 1 auto;font:600 14px Figtree,sans-serif;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:999px;padding:10px 14px;cursor:pointer}
+.chips button[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:#fff}
+.hint{font-size:13px;color:var(--muted);margin:6px 0 0}
+.err{color:var(--err);font-size:13px;margin:6px 0 0;min-height:1em}
+.recap{margin:18px 0 0;padding:14px;border-radius:12px;background:var(--bg);font-size:15px}
+.recap div{display:flex;justify-content:space-between;gap:12px;padding:3px 0}
+.recap .tot{border-top:1px solid var(--line);margin-top:6px;padding-top:8px;font-weight:700}
+.cta{display:block;width:100%;margin-top:18px;border:0;border-radius:14px;padding:16px;font:700 17px "Bricolage Grotesque",sans-serif;background:var(--sun);color:var(--sun-ink);cursor:pointer;text-align:center;text-decoration:none}
+.cta[disabled]{opacity:.45;cursor:not-allowed}
+.steps{margin:28px 0 0;padding:0;list-style:none;display:grid;gap:12px}
+.steps li{display:flex;gap:12px}
+.steps span{flex:none;width:30px;height:30px;border-radius:50%;background:var(--brand);color:#fff;display:grid;place-items:center;font-weight:700;font-size:14px}
+.steps p{margin:0}
+.steps small{color:var(--muted);display:block}
+.warn{margin-top:24px;border-left:4px solid var(--sun);padding:4px 0 4px 14px;color:var(--muted);font-size:14px}
+[hidden]{display:none}
+
+#splash{position:fixed;inset:0;z-index:99;background:radial-gradient(circle at 50% 40%,#0f2a44,#050d15 70%);display:grid;place-items:center;transition:opacity .5s}
+#splash.out{opacity:0;pointer-events:none}
+#splash.out .sp-wrap{transform:scale(1.7);transition:transform .5s ease-in}
+.sp-wrap{display:flex;flex-direction:column;align-items:center;gap:18px;animation:glow 2.4s ease-in-out 1.6s infinite}
+.sp-m{width:132px;height:132px;overflow:visible;animation:pop 1s ease-in-out 1.6s both}
+.sp-m path{fill:none;stroke-width:16;stroke-dasharray:1;stroke-dashoffset:1;stroke-miterlimit:10}
+.sp-m .b{stroke:url(#gb);animation:draw .7s cubic-bezier(.7,0,.3,1) forwards}
+.sp-m .b2{animation-delay:.25s}.sp-m .b1{animation-delay:.05s}
+.sp-m .v{stroke:url(#gy);animation:draw .8s cubic-bezier(.7,0,.3,1) .7s forwards}
+.sp-t{font:800 22px "Bricolage Grotesque",system-ui,sans-serif;color:#fff;opacity:0;letter-spacing:.9em;margin-right:-.9em;animation:tin .9s ease-out 1.5s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes pop{50%{transform:scale(1.14)}}
+@keyframes glow{50%{filter:drop-shadow(0 0 22px rgba(247,197,43,.55))}}
+@keyframes tin{to{opacity:1;letter-spacing:.38em;margin-right:-.38em}}
+@media (prefers-reduced-motion:reduce){#splash *{animation:none!important}.sp-m path{stroke-dashoffset:0}.sp-t{opacity:1;letter-spacing:.38em}}
+</style>
+</head>
+<body>
+<div id="splash" aria-hidden="true"><div class="sp-wrap">
+<svg class="sp-m" viewBox="0 0 120 120"><defs>
+<linearGradient id="gb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6aa8ee"/><stop offset="1" stop-color="#0b4f9c"/></linearGradient>
+<linearGradient id="gy" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffe27a"/><stop offset="1" stop-color="#f7c52b"/></linearGradient>
+<clipPath id="cp"><rect x="0" y="18" width="120" height="100"/></clipPath></defs>
+<path class="b b1" pathLength="1" d="M26 18V102"/><path class="b b2" pathLength="1" d="M94 18V102"/>
+<path class="v" pathLength="1" clip-path="url(#cp)" d="M26 18L60 74L94 18"/></svg>
+<div class="sp-t">KRYPTO</div></div></div>
+<main id="gate" hidden><div class="brandrow"><span class="brand">M-Krypto</span></div>
+<h1>Connectez-vous</h1><p class="lead">Utilisez votre compte Gmail pour continuer.</p>
+<section class="card" style="display:grid;gap:12px;justify-items:center"><div id="gbtn"></div><p class="err" id="gateErr" role="alert"></p></section></main>
+<main id="app" hidden>
+<p class="hint" id="bar" hidden style="text-align:right;margin:0"><span id="who"></span> · <a href="#" id="logout">Se déconnecter</a></p>
+<div class="brandrow"><svg class="logo" viewBox="0 0 120 120" role="img" aria-label="Logo M-Krypto"><g class="ring r1"><circle cx="86.0" cy="60.0" r="3.4" fill="var(--brand)"/><circle cx="81.0" cy="75.3" r="3.4" fill="var(--brand)"/><circle cx="68.0" cy="84.7" r="3.4" fill="var(--brand)"/><circle cx="52.0" cy="84.7" r="3.4" fill="var(--brand)"/><circle cx="39.0" cy="75.3" r="3.4" fill="var(--brand)"/><circle cx="34.0" cy="60.0" r="3.4" fill="var(--brand)"/><circle cx="39.0" cy="44.7" r="3.4" fill="var(--brand)"/><circle cx="52.0" cy="35.3" r="3.4" fill="var(--brand)"/><circle cx="68.0" cy="35.3" r="3.4" fill="var(--brand)"/><circle cx="81.0" cy="44.7" r="3.4" fill="var(--brand)"/></g><g class="ring r2"><circle cx="91.9" cy="71.7" r="3.0" fill="var(--brand)"/><circle cx="83.7" cy="84.4" r="3.0" fill="var(--brand)"/><circle cx="70.8" cy="92.2" r="3.0" fill="var(--brand)"/><circle cx="55.7" cy="93.7" r="3.0" fill="var(--brand)"/><circle cx="41.5" cy="88.5" r="3.0" fill="var(--brand)"/><circle cx="31.0" cy="77.7" r="3.0" fill="var(--brand)"/><circle cx="26.2" cy="63.4" r="3.0" fill="var(--brand)"/><circle cx="28.1" cy="48.3" r="3.0" fill="var(--brand)"/><circle cx="36.3" cy="35.6" r="3.0" fill="var(--brand)"/><circle cx="49.2" cy="27.8" r="3.0" fill="var(--brand)"/><circle cx="64.3" cy="26.3" r="3.0" fill="var(--brand)"/><circle cx="78.5" cy="31.5" r="3.0" fill="var(--brand)"/><circle cx="89.0" cy="42.3" r="3.0" fill="var(--brand)"/><circle cx="93.8" cy="56.6" r="3.0" fill="var(--brand)"/></g><g class="ring r3"><circle cx="92.1" cy="87.1" r="2.6" fill="var(--brand)"/><circle cx="80.9" cy="96.4" r="2.6" fill="var(--brand)"/><circle cx="67.2" cy="101.4" r="2.6" fill="var(--brand)"/><circle cx="52.6" cy="101.3" r="2.6" fill="var(--brand)"/><circle cx="38.9" cy="96.3" r="2.6" fill="var(--brand)"/><circle cx="27.8" cy="86.9" r="2.6" fill="var(--brand)"/><circle cx="20.5" cy="74.3" r="2.6" fill="var(--brand)"/><circle cx="18.0" cy="59.9" r="2.6" fill="var(--brand)"/><circle cx="20.6" cy="45.6" r="2.6" fill="var(--brand)"/><circle cx="27.9" cy="32.9" r="2.6" fill="var(--brand)"/><circle cx="39.1" cy="23.6" r="2.6" fill="var(--brand)"/><circle cx="52.8" cy="18.6" r="2.6" fill="var(--brand)"/><circle cx="67.4" cy="18.7" r="2.6" fill="var(--brand)"/><circle cx="81.1" cy="23.7" r="2.6" fill="var(--brand)"/><circle cx="92.2" cy="33.1" r="2.6" fill="var(--brand)"/><circle cx="99.5" cy="45.7" r="2.6" fill="var(--brand)"/><circle cx="102.0" cy="60.1" r="2.6" fill="var(--brand)"/><circle cx="99.4" cy="74.4" r="2.6" fill="var(--brand)"/></g><g class="ring r4"><circle cx="84.9" cy="103.4" r="2.2" fill="var(--brand)"/><circle cx="72.3" cy="108.5" r="2.2" fill="var(--brand)"/><circle cx="58.7" cy="110.0" r="2.2" fill="var(--brand)"/><circle cx="45.3" cy="107.8" r="2.2" fill="var(--brand)"/><circle cx="32.9" cy="102.0" r="2.2" fill="var(--brand)"/><circle cx="22.6" cy="93.2" r="2.2" fill="var(--brand)"/><circle cx="15.0" cy="81.9" r="2.2" fill="var(--brand)"/><circle cx="10.8" cy="68.9" r="2.2" fill="var(--brand)"/><circle cx="10.2" cy="55.3" r="2.2" fill="var(--brand)"/><circle cx="13.3" cy="42.1" r="2.2" fill="var(--brand)"/><circle cx="19.9" cy="30.1" r="2.2" fill="var(--brand)"/><circle cx="29.4" cy="20.4" r="2.2" fill="var(--brand)"/><circle cx="41.3" cy="13.6" r="2.2" fill="var(--brand)"/><circle cx="54.5" cy="10.3" r="2.2" fill="var(--brand)"/><circle cx="68.1" cy="10.7" r="2.2" fill="var(--brand)"/><circle cx="81.1" cy="14.7" r="2.2" fill="var(--brand)"/><circle cx="92.5" cy="22.0" r="2.2" fill="var(--brand)"/><circle cx="101.6" cy="32.2" r="2.2" fill="var(--brand)"/><circle cx="107.5" cy="44.5" r="2.2" fill="var(--brand)"/><circle cx="110.0" cy="57.9" r="2.2" fill="var(--brand)"/><circle cx="108.7" cy="71.4" r="2.2" fill="var(--brand)"/><circle cx="103.8" cy="84.1" r="2.2" fill="var(--brand)"/><circle cx="95.7" cy="95.1" r="2.2" fill="var(--brand)"/></g><g class="coin"><circle cx="60" cy="60" r="18" fill="#f7c52b"/><polyline points="50,68 50,52 60,62 70,52 70,68" fill="none" stroke="#0b4f9c" stroke-width="4.6" stroke-linecap="round" stroke-linejoin="round"/></g></svg><span class="brand">M-Krypto</span></div>
+<h1>Recevez des USDT, payez en francs congolais.</h1>
+<p class="lead">Envoyez de l’argent depuis votre mobile money, recevez des USDT dans votre portefeuille.</p>
+
+<div class="rate"><span>1 USDT =</span><b id="rate">…</b></div>
+<p class="hint" id="upd" style="margin:-4px 0 14px"></p>
+
+<section class="card" aria-label="Commande">
+  <label for="cdf">Vous payez (FC)</label>
+  <input id="cdf" class="amount" inputmode="numeric" placeholder="50 000" autocomplete="off">
+  <p class="hint" id="limits"></p>
+
+  <div class="pair" style="margin-top:16px">
+    <div><label for="usdt" style="margin-top:0">Vous recevez (USDT)</label>
+    <input id="usdt" inputmode="decimal" placeholder="0.00" autocomplete="off"></div>
+    <div><label for="op" style="margin-top:0">Payer avec</label>
+    <select id="op"><option>M-Pesa</option><option>Airtel Money</option><option>Orange Money</option><option>Afrimoney</option></select></div>
+  </div>
+
+  <label>Réseau de réception</label>
+  <div class="chips" id="nets">
+    <button type="button" data-n="TRC20" aria-pressed="true">TRON (TRC20)</button>
+    <button type="button" data-n="BEP20" aria-pressed="false">BNB Chain (BEP20)</button>
+  </div>
+
+  <label for="addr">Adresse de votre portefeuille USDT</label>
+  <input id="addr" placeholder="T…" autocomplete="off" autocapitalize="off" spellcheck="false">
+  <p class="err" id="addrErr" role="alert"></p>
+
+  <label for="phone">Votre numéro mobile money</label>
+  <input id="phone" inputmode="tel" placeholder="+243 8…" autocomplete="tel">
+
+  <div class="recap" id="recap">
+    <div><span>Montant</span><span id="r1">—</span></div>
+    <div><span>Frais réseau</span><span id="r2">—</span></div>
+    <div class="tot"><span>Vous recevrez</span><span id="r3">—</span></div>
+  </div>
+
+  <button class="cta" id="go" disabled>Envoyer ma commande sur WhatsApp</button>
+  <p class="hint">Vous recevrez le numéro de paiement sur WhatsApp. Aucun USDT n’est envoyé avant la confirmation de votre paiement.</p>
+</section>
+
+<section class="card admin" id="admin" hidden>
+  <h2>Espace propriétaire</h2>
+  <label for="newRate">Nouveau taux (FC pour 1 USDT)</label>
+  <input id="newRate" inputmode="numeric">
+  <button class="cta" id="saveRate" type="button">Publier le nouveau taux</button>
+  <p class="err" id="adminMsg" role="alert"></p>
+  <p class="hint">Visible uniquement par vous. Le nouveau taux s’affiche pour tous les clients dès la publication.</p>
+</section>
+
+<ol class="steps" aria-label="Comment ça marche">
+  <li><span>1</span><p><b>Remplissez la commande</b><small>Montant, réseau et adresse de réception.</small></p></li>
+  <li><span>2</span><p><b>Payez par mobile money</b><small>Vous recevez le numéro et la référence sur WhatsApp.</small></p></li>
+  <li><span>3</span><p><b>Recevez vos USDT</b><small>Envoyés à votre adresse après confirmation du paiement.</small></p></li>
+</ol>
+
+<p class="warn">Vérifiez bien votre adresse et son réseau. Un transfert crypto est définitif : envoyé à une mauvaise adresse, il ne peut pas être récupéré.</p>
+</main>
+
+<script id="state" type="application/json">{"rate":2450,"updated":"2026-10-05"}</script>
+<script>
+/* ===== À MODIFIER PAR VOUS ===== */
+var CONFIG = {
+  networkFee: {TRC20: 1.5, BEP20: 0.5}, // frais d'envoi en USDT
+  minCDF: 20000,
+  maxCDF: 2000000,
+  whatsapp: "243831936722", // votre numéro WhatsApp, sans le +
+  googleClientId: "" // ID client Google (voir LISEZ-MOI) ; vide = connexion désactivée
+};
+/* =============================== */
+var SRC = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+var STATE = JSON.parse(document.getElementById("state").textContent);
+var rate = STATE.rate;
+var net = "TRC20";
+var $ = function(id){return document.getElementById(id)};
+var fmt = function(n){return Math.round(n).toLocaleString("fr-FR")};
+var syncing = false;
+
+$("rate").textContent = fmt(rate) + " FC";
+$("upd").textContent = "Taux mis à jour le " + STATE.updated.split("-").reverse().join("/");
+$("limits").textContent = "Min. " + fmt(CONFIG.minCDF) + " FC · Max. " + fmt(CONFIG.maxCDF) + " FC";
+
+function num(v){return parseFloat(String(v).replace(/[\s\u202f\u00a0]/g,"").replace(",","."))||0}
+
+function addrOk(){
+  var a = $("addr").value.trim();
+  if(!a) return null;
+  if(net==="TRC20") return /^T[1-9A-HJ-NP-Za-km-z]{33}$/.test(a);
+  return /^0x[0-9a-fA-F]{40}$/.test(a);
+}
+
+function update(){
+  var cdf = num($("cdf").value);
+  var fee = CONFIG.networkFee[net];
+  var gross = cdf / rate;
+  var net_ = Math.max(0, gross - fee);
+  $("r1").textContent = fmt(cdf) + " FC";
+  $("r2").textContent = fee.toFixed(2) + " USDT";
+  $("r3").textContent = net_.toFixed(2) + " USDT";
+  var ok = addrOk();
+  $("addrErr").textContent = ok===false ? (net==="TRC20" ? "Une adresse TRC20 commence par T et fait 34 caractères." : "Une adresse BEP20 commence par 0x et fait 42 caractères.") : "";
+  var valid = cdf>=CONFIG.minCDF && cdf<=CONFIG.maxCDF && ok===true && num($("phone").value)>0 && net_>0;
+  $("go").disabled = !valid;
+}
+
+$("cdf").addEventListener("input", function(){
+  var c = num(this.value);
+  this.value = c ? fmt(c) : "";
+  $("usdt").value = c ? Math.max(0, c/rate - CONFIG.networkFee[net]).toFixed(2) : "";
+  update();
+});
+$("usdt").addEventListener("input", function(){
+  var u = num(this.value);
+  var c = u ? (u + CONFIG.networkFee[net]) * rate : 0;
+  $("cdf").value = c ? fmt(Math.ceil(c/100)*100) : "";
+  update();
+});
+["addr","phone"].forEach(function(id){$(id).addEventListener("input", update)});
+$("nets").addEventListener("click", function(e){
+  var b = e.target.closest("button"); if(!b) return;
+  net = b.dataset.n;
+  [].forEach.call($("nets").children, function(x){x.setAttribute("aria-pressed", x===b)});
+  $("addr").placeholder = net==="TRC20" ? "T…" : "0x…";
+  if($("cdf").value) $("cdf").dispatchEvent(new Event("input"));
+  update();
+});
+$("go").addEventListener("click", function(){
+  var cdf = num($("cdf").value);
+  var usdt = Math.max(0, cdf/rate - CONFIG.networkFee[net]).toFixed(2);
+  var msg = "Bonjour, je veux acheter des USDT.\n" +
+    "Montant : " + fmt(cdf) + " FC\n" +
+    "Je reçois : " + usdt + " USDT (" + net + ")\n" +
+    "Taux : 1 USDT = " + fmt(rate) + " FC\n" +
+    "Paiement via : " + $("op").value + " (" + $("phone").value.trim() + ")\n" +
+    "Adresse : " + $("addr").value.trim() + (GUSER ? "\nCompte : " + GUSER.email : "");
+  window.open("https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(msg), "_blank", "noopener");
+});
+update();
+
+/* Service worker (dans le script principal pour survivre à la republication du taux) */
+if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})})}
+
+/* Écran d'accueil animé + connexion Gmail */
+var GUSER = null;
+function showApp(u){
+  GUSER = u; $("gate").hidden = true; $("app").hidden = false;
+  $("bar").hidden = !u; $("who").textContent = u ? u.email : "";
+}
+function jwt(t){
+  var b = t.split(".")[1].replace(/-/g,"+").replace(/_/g,"/");
+  return JSON.parse(decodeURIComponent(atob(b).split("").map(function(c){return "%"+("00"+c.charCodeAt(0).toString(16)).slice(-2)}).join("")));
+}
+function onCred(r){
+  try{
+    var p = jwt(r.credential);
+    if(p.aud !== CONFIG.googleClientId || !p.email_verified) throw 0;
+    if(!/@gmail\.com$/i.test(p.email)){ $("gateErr").textContent = "Utilisez un compte Gmail (@gmail.com)."; return; }
+    var u = {email:p.email, name:p.name||"", t:Date.now()};
+    try{ localStorage.setItem("mk_user", JSON.stringify(u)); }catch(e){}
+    showApp(u);
+  }catch(e){ $("gateErr").textContent = "Connexion impossible. Réessayez."; }
+}
+$("logout").addEventListener("click", function(e){
+  e.preventDefault();
+  try{ localStorage.removeItem("mk_user"); }catch(x){}
+  try{ google.accounts.id.disableAutoSelect(); }catch(x){}
+  location.reload();
+});
+function start(){
+  if(!CONFIG.googleClientId){ showApp(null); return; }
+  try{
+    var u = JSON.parse(localStorage.getItem("mk_user")||"null");
+    if(u && u.email && Date.now()-u.t < 30*864e5){ showApp(u); return; }
+  }catch(e){}
+  $("gate").hidden = false;
+  var g = document.createElement("script");
+  g.src = "https://accounts.google.com/gsi/client"; g.async = true;
+  g.onload = function(){
+    google.accounts.id.initialize({client_id:CONFIG.googleClientId, callback:onCred});
+    google.accounts.id.renderButton($("gbtn"), {theme:"outline", size:"large", shape:"pill", text:"continue_with", locale:"fr", width:280});
+  };
+  g.onerror = function(){ $("gateErr").textContent = "Connexion à Google impossible. Vérifiez votre réseau."; };
+  document.head.appendChild(g);
+}
+setTimeout(function(){
+  $("splash").classList.add("out");
+  setTimeout(function(){ $("splash").remove(); start(); }, 500);
+}, matchMedia("(prefers-reduced-motion:reduce)").matches ? 900 : 3200);
+
+/* Espace propriétaire : visible et utilisable uniquement par le propriétaire */
+(async function(){
+  try{
+    var user = await claude.use("user");
+    if(!user || !user.isOwner()) return;
+    var art = await claude.use("artifact");
+    if(!art) return;
+    $("admin").hidden = false; $("newRate").value = rate;
+    $("saveRate").addEventListener("click", async function(){
+      var v = Math.round(num($("newRate").value));
+      if(v<1000 || v>10000){ $("adminMsg").textContent = "Taux invalide : entrez entre 1 000 et 10 000 FC."; return; }
+      var st = {rate:v, updated:new Date().toISOString().slice(0,10)};
+      var html = SRC.replace(/(<script id="state" type="application\/json">)[\s\S]*?(<\/script>)/, function(m,a,b){return a+JSON.stringify(st)+b});
+      $("adminMsg").textContent = "";
+      try{ await art.publish(html); }catch(e){ $("adminMsg").textContent = "Échec de la publication (" + ((e && e.code) || "erreur") + ")."; }
+    });
+  }catch(e){}
+})();
+</script>
+</body>
+</html>
